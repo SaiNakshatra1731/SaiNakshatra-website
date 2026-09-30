@@ -1,0 +1,2 @@
+// Secure frontend connection. The API key never lives in the browser.
+async function calculateRealAstrology(birthDetails){const response=await fetch("/api/calculate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(birthDetails)});let result={};try{result=await response.json()}catch{throw new Error("The calculation server returned an invalid response.")}if(!response.ok){let message=result.error||"Astrology calculation failed.";if(result.stage)message+=` (${result.stage})`;throw new Error(message)}return result}
